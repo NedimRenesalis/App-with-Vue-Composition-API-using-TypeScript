@@ -5,7 +5,10 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+  import { createComponent, ref } from '@vue/composition-api'
+  import Character from './interfaces/Character'
+  import CharacterService from './services/CharacterService'
 import HelloWorld from './components/HelloWorld.vue'
 
 export default {
