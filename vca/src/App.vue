@@ -6,17 +6,24 @@
 </template>
 
 <script lang="ts">
-  import { createComponent, ref } from '@vue/composition-api'
-  import Character from './interfaces/Character'
-  import CharacterService from './services/CharacterService'
-import HelloWorld from './components/HelloWorld.vue'
+import { createComponent, ref } from '@vue/composition-api'
+import Character from './interfaces/Character'
+import CharacterService from './services/CharacterService'
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
+export default createComponent({
+  setup () {
+    const characterService = new CharacterService()
+    const characters = ref<Character[]>([])
+
+    const fetchData = async (): Promise<void> => {
+      characters.value = await characterService.FetchCharacters()
+    }
+    fetchData()
+    return {
+      characters
+    }
   }
-}
+})
 </script>
 
 <style>
